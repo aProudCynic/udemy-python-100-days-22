@@ -13,3 +13,9 @@ class Paddle(Turtle):
         self.setposition(x_coordinate, y_coordinate)
         self.setheading(90)
         self.turtlesize(1, 5)
+        
+    def up(self):
+        self.forward(Paddle._PADDLE_MOVEMENT_DISTANCE)
+
+    def down(self):
+        self.backward(Paddle._PADDLE_MOVEMENT_DISTANCE)

@@ -3,6 +3,11 @@ from paddle import Paddle
 from turtle import Screen
 from constants import ARENA_WIDTH, ARENA_HEIGHT
 
+def setup_event_listeners(screen, paddle: Paddle):
+    screen.listen()
+    screen.onkey(paddle.up, 'Up')
+    screen.onkey(paddle.down, 'Down')
+
 def setup_gameplay_area(screen):
     screen.bgcolor('black')
     screen.setup(ARENA_WIDTH, ARENA_HEIGHT)
@@ -12,6 +17,7 @@ def setup_gameplay_area(screen):
 screen = Screen()
 setup_gameplay_area(screen)
 paddle = Paddle(350, 0)
+setup_event_listeners(screen, paddle)
 screen.update()
 
 game_on = True
