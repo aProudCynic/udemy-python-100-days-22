@@ -9,6 +9,7 @@ def setup_gameplay_area(screen):
 
 screen = Screen()
 setup_gameplay_area(screen)
+screen.tracer(0)
 paddle = Paddle(350, 0)
 screen.update()
 screen.exitonclick()
