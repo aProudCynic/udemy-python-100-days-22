@@ -4,6 +4,7 @@ from constants import ARENA_WIDTH, ARENA_HEIGHT
 def setup_gameplay_area(screen):
     screen.bgcolor('black')
     screen.setup(ARENA_WIDTH, ARENA_HEIGHT)
+    screen.title('Pong')
     screen.exitonclick()
 
 screen = Screen()
