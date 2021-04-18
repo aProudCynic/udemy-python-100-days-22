@@ -14,6 +14,12 @@ def setup_gameplay_area(screen):
     screen.title('Pong')
     screen.tracer(0)
 
+def ball_hits_horizontal_wall(ball: Ball):
+    max_up_coordinate = ARENA_HEIGHT / 2 - Ball.HEIGHT_AND_WIDTH
+    max_down_coordinate = max_up_coordinate * -1
+    ball_y_coordinate = ball.ycor()
+    return ball_y_coordinate >= max_up_coordinate or ball_y_coordinate <= max_down_coordinate
+
 screen = Screen()
 setup_gameplay_area(screen)
 left_paddle = Paddle(-350, 0)
@@ -26,6 +32,8 @@ screen.update()
 
 game_on = True
 while game_on:
+    if ball_hits_horizontal_wall(ball):
+        ball.bounce_horizontally()
     ball.forward(5)
     screen.update()
 
