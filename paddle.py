@@ -3,7 +3,9 @@ from turtle import Turtle
 class Paddle(Turtle):
 
     _PADDLE_MOVEMENT_DISTANCE = 10
-    _PADDLE_HEIGHT = 100
+    HEIGHT = 100
+    WIDTH = 20
+    
 
     def __init__(self, x_coordinate, y_coordinate):
         super().__init__()

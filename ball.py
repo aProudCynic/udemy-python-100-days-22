@@ -13,4 +13,9 @@ class Ball(Turtle):
         self.setheading(50)
 
     def bounce_horizontally(self):
-        self.setheading(self.heading() * -1)
+        new_heading = self.heading() * -1
+        self.setheading(new_heading)
+
+    def bounce_vertically(self):
+        new_heading = 180 - self.heading()
+        self.setheading(new_heading)
