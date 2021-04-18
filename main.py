@@ -23,6 +23,5 @@ screen.update()
 game_on = True
 while game_on:
     screen.update()
-    sleep(0.2)
 
 screen.exitonclick()
