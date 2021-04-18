@@ -1,3 +1,4 @@
+from ball import Ball
 from time import sleep
 from paddle import Paddle
 from turtle import Screen
@@ -17,6 +18,7 @@ screen = Screen()
 setup_gameplay_area(screen)
 left_paddle = Paddle(-350, 0)
 right_paddle = Paddle(350, 0)
+ball = Ball()
 screen.listen()
 setup_event_listeners(left_paddle, 'w', 's')
 setup_event_listeners(right_paddle, 'Up', 'Down')
@@ -24,6 +26,7 @@ screen.update()
 
 game_on = True
 while game_on:
+    ball.forward(5)
     screen.update()
 
 screen.exitonclick()
