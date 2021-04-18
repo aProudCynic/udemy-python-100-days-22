@@ -3,6 +3,7 @@ from time import sleep
 from paddle import Paddle
 from turtle import Screen
 from constants import ARENA_WIDTH, ARENA_HEIGHT
+from math import copysign
 
 def setup_event_listeners(paddle: Paddle, up_key: str, down_key: str):
     screen.onkey(paddle.up, up_key)
@@ -33,7 +34,9 @@ def ball_hits_paddle(ball, left_paddle, right_paddle):
 def ball_touches_paddle(ball: Ball, paddle: Paddle):
     paddle_y_coordinate = paddle.ycor()
     ball_y_coordinate = ball.ycor()
-    return ball_y_coordinate <= paddle_y_coordinate + Paddle.HEIGHT and ball_y_coordinate >= paddle_y_coordinate - Paddle.HEIGHT
+    ball_heading = ball.heading()
+    ball_moves_towards_paddle = ball_heading < 90 or ball_heading > 270 if paddle.xcor() > 0 else ball_heading > 90 and ball_heading < 270
+    return ball_moves_towards_paddle and ball_y_coordinate <= paddle_y_coordinate + Paddle.HEIGHT and ball_y_coordinate >= paddle_y_coordinate - Paddle.HEIGHT
 
 def ball_hits_vertical_wall(ball: Ball):
     return ball_hits_left_wall(ball) or ball_hits_right_wall(ball)
@@ -68,8 +71,10 @@ game_on = True
 while game_on:
     if ball_hits_horizontal_wall(ball):
         ball.bounce_horizontally()
+        print(f'new direction: {ball.heading()}')
     if ball_hits_paddle(ball, left_paddle, right_paddle):
         ball.bounce_vertically()
+        print(f'new direction: {ball.heading()}')
     if ball_hits_vertical_wall(ball):
         game_on = False
         print(evaluate_winner(ball))
